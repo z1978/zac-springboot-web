@@ -47,21 +47,21 @@ public class ZacController {
 	private static final String TM_CATEGORY = "TitanMaster/category";
 	private static final String TM_CONTACT = "TitanMaster/contact";
 	private static final String EB_INDEX = "eBusiness/index";
+	private static final String CROPPIC_INDEX = "croppic/index";
 
 	@Autowired
 	private ContactService contactService;
-	
+
 	@Autowired
 	private ProductService productService;
 	@Autowired
 	private CategoryService categoryService;
-	
+
 	@Autowired
 	ProductRepository productRepository;
 	@Autowired
 	ProductRepository categoryRepository;
 
-	
 	public ZacController(ProductService productService, CategoryService categoryService) {
 		this.productService = productService;
 		this.categoryService = categoryService;
@@ -78,6 +78,12 @@ public class ZacController {
 	@RequestMapping(value = { "/tm", "/tm/index" }, method = { RequestMethod.GET })
 	public ModelAndView titanHome(ModelAndView mav) {
 		logger.debug("TM + index");
+		try {
+			categoryService.testRun();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		mav.addObject("model", "model");
 		mav.setViewName(TM_INDEX);
 		List<Category> list1 = categoryService.findByParentCategoryId(1);
@@ -86,16 +92,17 @@ public class ZacController {
 		mav.addObject("result4category3", list3);
 		return mav;
 	}
-//	@GetMapping(value = { "/tm", "/tm/index" })
-//	public ModelAndView titanMasterHome(Model model) {
-//		model.addAttribute("loginError", true);
-//
-//		ModelAndView modelAndView = new ModelAndView("TitanMaster/index");
-//		modelAndView.addObject("roles", roleService.findAll());
-//		return modelAndView;
-//
-//		// return "TitanMaster/index";
-//	}
+
+	// @GetMapping(value = { "/tm", "/tm/index" })
+	// public ModelAndView titanMasterHome(Model model) {
+	// model.addAttribute("loginError", true);
+	//
+	// ModelAndView modelAndView = new ModelAndView("TitanMaster/index");
+	// modelAndView.addObject("roles", roleService.findAll());
+	// return modelAndView;
+	//
+	// // return "TitanMaster/index";
+	// }
 	@RequestMapping(value = { "/tm/about" }, method = { RequestMethod.GET })
 	public ModelAndView titanAbout(ModelAndView mav) {
 		logger.debug("TM + about");
@@ -104,60 +111,62 @@ public class ZacController {
 		return mav;
 	}
 
-//	@RequestMapping(value = { "/tm/category" }, method = { RequestMethod.GET })
-//	public ModelAndView titanItem(ModelAndView mav) {
-//		logger.debug("TM + contact");
-//		mav.addObject("model", "model");
-//		List<Category> list = categoryService.findAll();
-//		mav.addObject("result4category", list);
-//		mav.setViewName(TM_CATEGORY);
-//		return mav;
-//	}
-	
+	// @RequestMapping(value = { "/tm/category" }, method = { RequestMethod.GET })
+	// public ModelAndView titanItem(ModelAndView mav) {
+	// logger.debug("TM + contact");
+	// mav.addObject("model", "model");
+	// List<Category> list = categoryService.findAll();
+	// mav.addObject("result4category", list);
+	// mav.setViewName(TM_CATEGORY);
+	// return mav;
+	// }
+
 	@RequestMapping(value = { "/tm/category/{id}" }, method = { RequestMethod.GET })
-	    public ModelAndView getCategoryItmeAll(ModelAndView mav, @PathVariable Integer id) {
+	public ModelAndView getCategoryItmeAll(ModelAndView mav, @PathVariable Integer id) {
 		logger.debug("TM + contact");
 		mav.addObject("model", "model");
-	        List<Product> productList = productService.findByCategoryId(id);
-	        mav.addObject("result4product", productList);
-			mav.setViewName(TM_CATEGORY);
-			return mav;
-	    }
+		List<Product> productList = productService.findByCategoryId(id);
+		mav.addObject("result4product", productList);
+		mav.setViewName(TM_CATEGORY);
+		return mav;
+	}
 
-//	@RequestMapping(value = { "/tm/contact" }, method = { RequestMethod.GET })
-//	public ModelAndView titanContact(ModelAndView mav) {
-//		logger.debug("TM + contact");
-//		mav.addObject("model", "model");
-//		mav.setViewName(TM_CONTACT);
-//		return mav;
-//	}
-	
+	// @RequestMapping(value = { "/tm/contact" }, method = { RequestMethod.GET })
+	// public ModelAndView titanContact(ModelAndView mav) {
+	// logger.debug("TM + contact");
+	// mav.addObject("model", "model");
+	// mav.setViewName(TM_CONTACT);
+	// return mav;
+	// }
+
 	@GetMapping("/tm/contact")
-    public String titanContact(Model model) {
-    	// TODO
-        model.addAttribute("newContact", new Contact());
-        return TM_CONTACT;
-    }
-	
+	public String titanContact(Model model) {
+		// TODO
+		model.addAttribute("newContact", new Contact());
+		return TM_CONTACT;
+	}
+
 	@PostMapping("/tm/contact/newContact")
-    public String saveNewContact(Model model, @ModelAttribute("newContact") @Valid final Contact newContact,
-                              BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+	public String saveNewContact(Model model, @ModelAttribute("newContact") @Valid final Contact newContact,
+			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
-        boolean hasErrors = false;
-        String formWithErrors = "/tm/contact";
+		boolean hasErrors = false;
+		String formWithErrors = "/tm/contact";
 
-        if (bindingResult.hasErrors()) hasErrors = true;
+		if (bindingResult.hasErrors())
+			hasErrors = true;
 
-        if (hasErrors) return formWithErrors;
+		if (hasErrors)
+			return formWithErrors;
 
-        else {
-            contactService.createOne(newContact);
-            redirectAttributes.addFlashAttribute("contactHasBeenSaved", true);
-            return "TitanMaster/contactConfirm";
-        }
-        
-    }
-	
+		else {
+			contactService.createOne(newContact);
+			redirectAttributes.addFlashAttribute("contactHasBeenSaved", true);
+			return "TitanMaster/contactConfirm";
+		}
+
+	}
+
 	@GetMapping("/test2")
 	public String index2(ModelMap model, @RequestParam(name = "id", required = false) Integer id,
 			@RequestParam(name = "name", required = false) String name) {
@@ -166,7 +175,6 @@ public class ZacController {
 		}
 		return TM_INDEX;
 	}
-
 
 	// POST用のパラメータを受け取る
 	@RequestMapping(value = { "/formPost" }, method = { RequestMethod.POST })
@@ -197,6 +205,18 @@ public class ZacController {
 		mv.addObject("age", age);
 
 		return mv;
+	}
+
+	// croppic home
+	@GetMapping(value = { "/croppic", "/croppic/index" })
+	public String croppicHome(Model model) {
+		return CROPPIC_INDEX;
+	}
+
+	// croppic upload
+	@GetMapping(value = { "/croppic/upload" })
+	public String croppicLost(Model model) {
+		return CROPPIC_INDEX;
 	}
 
 }
