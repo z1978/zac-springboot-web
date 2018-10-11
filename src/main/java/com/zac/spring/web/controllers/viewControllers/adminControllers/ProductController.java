@@ -23,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.zac.spring.entity.Product;
 import com.zac.spring.service.ProductService;
+import com.zac.spring.service.UploadForm;
 import com.zac.spring.web.dto.UserDto;
 
 /**
@@ -96,8 +97,12 @@ public class ProductController {
     }
 
     @PostMapping("/products/newProduct")
-    public String saveNewProduct(Model model, @ModelAttribute("newProduct") @Valid final Product newProduct,
+    public String saveNewProduct(Model model, @ModelAttribute("newProduct") @Valid final Product newProduct, @Valid UploadForm uploadForm,
                               BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+      
+      byte[] image = productService.getImageBinary(uploadForm.getImageFile());
+      
+      System.out.println(productService.isPngBinary(image));
 
         Product productNameAlreadyExists = productService.findByName(newProduct.getName());
         boolean hasErrors = false;
