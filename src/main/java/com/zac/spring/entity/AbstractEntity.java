@@ -26,15 +26,11 @@ public class AbstractEntity implements Serializable {
 	/** 登録日 */
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "create_date")
-	@Getter
-	@Setter
 	private Date createDate;
 
 	/** 更新日 */
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "update_date")
-	@Getter
-	@Setter
 	private Date updateDate;
 
 	/** バージョン */
@@ -61,4 +57,26 @@ public class AbstractEntity implements Serializable {
 		// 更新日を設定
 		updateDate = new Date();
 	}
+
+  public Date getCreateDate() {
+    return createDate;
+  }
+
+  public void setCreateDate(Date createDate) {
+    this.createDate = createDate;
+  }
+
+  public Date getUpdateDate() {
+    return updateDate;
+  }
+
+  public void setUpdateDate(Date updateDate) {
+    this.updateDate = updateDate;
+  }
+
+  public static long getSerialversionuid() {
+    return serialVersionUID;
+  }
+	
+	
 }

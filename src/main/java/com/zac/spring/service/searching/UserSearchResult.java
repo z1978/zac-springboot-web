@@ -11,6 +11,23 @@ import com.zac.spring.web.dto.UserDto;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserSearchResult {
-    private Page<UserDto> userDtoPage;
-    private boolean hasNumberFormatException;
+  public Page<UserDto> userDtoPage;
+  public boolean hasNumberFormatException;
+
+  public Page<UserDto> getUserDtoPage() {
+    return userDtoPage;
+  }
+
+  public void setUserDtoPage(Page<UserDto> userDtoPage) {
+    this.userDtoPage = userDtoPage;
+  }
+
+  public boolean isHasNumberFormatException() {
+    return hasNumberFormatException;
+  }
+
+  public void setHasNumberFormatException(boolean hasNumberFormatException) {
+    this.hasNumberFormatException = hasNumberFormatException;
+  }
+
 }

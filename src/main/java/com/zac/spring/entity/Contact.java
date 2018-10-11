@@ -27,28 +27,58 @@ public class Contact extends AbstractEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "contact_id")
-	@Getter
-	@Setter
 	private int contactId;
 
 	@Lob
 	@Column(name = "your_name")
-	@Getter
-	@Setter
 	@NotBlank (message = "Name is required")
 	private String yourName;
 
 	@Lob
 	@Column(name = "your_email")
-	@Getter
-	@Setter
 	@NotBlank (message = "Email is required")
 	private String yourEmail;
 
 	@Lob
 	@Column(name = "your_message")
-	@Getter
-	@Setter
 	@NotBlank (message = "Message is required")
 	private String yourMessage;
+
+  public int getContactId() {
+    return contactId;
+  }
+
+  public void setContactId(int contactId) {
+    this.contactId = contactId;
+  }
+
+  public String getYourName() {
+    return yourName;
+  }
+
+  public void setYourName(String yourName) {
+    this.yourName = yourName;
+  }
+
+  public String getYourEmail() {
+    return yourEmail;
+  }
+
+  public void setYourEmail(String yourEmail) {
+    this.yourEmail = yourEmail;
+  }
+
+  public String getYourMessage() {
+    return yourMessage;
+  }
+
+  public void setYourMessage(String yourMessage) {
+    this.yourMessage = yourMessage;
+  }
+
+  public static long getSerialversionuid() {
+    return serialVersionUID;
+  }
+	
+	
 }

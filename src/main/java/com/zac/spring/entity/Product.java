@@ -27,64 +27,136 @@ public class Product extends AbstractEntity implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="product_id")
-	@Getter
-	@Setter
 	private int productId;
 
 	@Column(name="category_id")
-	@Getter
-	@Setter
 	private int categoryId;
 
 	@Column(name="creator_id")
-	@Getter
-	@Setter
 	private int creatorId;
 
 	@Column(name="del_flg")
-	@Getter
-	@Setter
 	private short delFlg;
 
 	@Lob
 	@Column(name="description_detail")
-	@Getter
-	@Setter
 	private String descriptionDetail;
 
 	@Lob
 	@Column(name="description_list")
-	@Getter
-	@Setter
 	private String descriptionList;
 
 	@Lob
 	@Column(name="free_area")
-	@Getter
-	@Setter
 	private String freeArea;
 
 	@Lob
 	@Column(name="name")
-	@Getter
-	@Setter
     @NotBlank (message = "Name is required")
 	private String name;
 
 	@Lob
 	@Column(name="note")
-	@Getter
-	@Setter
 	private String note;
 
 	@Lob
 	@Column(name="search_word")
-	@Getter
-	@Setter
 	private String searchWord;
 
 	@Column(name="status")
-	@Getter
-	@Setter
 	private short status;
+
+  public int getProductId() {
+    return productId;
+  }
+
+  public void setProductId(int productId) {
+    this.productId = productId;
+  }
+
+  public int getCategoryId() {
+    return categoryId;
+  }
+
+  public void setCategoryId(int categoryId) {
+    this.categoryId = categoryId;
+  }
+
+  public int getCreatorId() {
+    return creatorId;
+  }
+
+  public void setCreatorId(int creatorId) {
+    this.creatorId = creatorId;
+  }
+
+  public short getDelFlg() {
+    return delFlg;
+  }
+
+  public void setDelFlg(short delFlg) {
+    this.delFlg = delFlg;
+  }
+
+  public String getDescriptionDetail() {
+    return descriptionDetail;
+  }
+
+  public void setDescriptionDetail(String descriptionDetail) {
+    this.descriptionDetail = descriptionDetail;
+  }
+
+  public String getDescriptionList() {
+    return descriptionList;
+  }
+
+  public void setDescriptionList(String descriptionList) {
+    this.descriptionList = descriptionList;
+  }
+
+  public String getFreeArea() {
+    return freeArea;
+  }
+
+  public void setFreeArea(String freeArea) {
+    this.freeArea = freeArea;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getNote() {
+    return note;
+  }
+
+  public void setNote(String note) {
+    this.note = note;
+  }
+
+  public String getSearchWord() {
+    return searchWord;
+  }
+
+  public void setSearchWord(String searchWord) {
+    this.searchWord = searchWord;
+  }
+
+  public short getStatus() {
+    return status;
+  }
+
+  public void setStatus(short status) {
+    this.status = status;
+  }
+
+  public static long getSerialversionuid() {
+    return serialVersionUID;
+  }
+	
+	
 }
