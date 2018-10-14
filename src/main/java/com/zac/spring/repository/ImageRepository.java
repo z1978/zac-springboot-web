@@ -1,6 +1,15 @@
 package com.zac.spring.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
-public interface ImageRepository extends JpaRepository<ImageModel, Long>{
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+
+import com.zac.spring.entity.Image;
+
+/**
+ * Created by Zac
+ */
+public interface ImageRepository extends JpaRepository<Image, Integer>, JpaSpecificationExecutor<Image>  {
+	List<Image> findByImageType(int imageType);
 }

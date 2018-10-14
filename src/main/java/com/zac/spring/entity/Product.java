@@ -11,60 +11,56 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-import lombok.Getter;
-import lombok.Setter;
-
-
 /**
  * The persistent class for the dtb_product database table.
  * 
  */
 @Entity
-@Table(name="dtb_product")
+@Table(name = "dtb_product")
 public class Product extends AbstractEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="product_id")
-	private int productId;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "product_id")
+  private int productId;
 
-	@Column(name="category_id")
-	private int categoryId;
+  @Column(name = "category_id")
+  private int categoryId;
 
-	@Column(name="creator_id")
-	private int creatorId;
+  @Column(name = "creator_id")
+  private int creatorId;
 
-	@Column(name="del_flg")
-	private short delFlg;
+  @Column(name = "del_flg")
+  private short delFlg;
 
-	@Lob
-	@Column(name="description_detail")
-	private String descriptionDetail;
+  @Lob
+  @Column(name = "description_detail")
+  private String descriptionDetail;
 
-	@Lob
-	@Column(name="description_list")
-	private String descriptionList;
+  @Lob
+  @Column(name = "description_list")
+  private String descriptionList;
 
-	@Lob
-	@Column(name="free_area")
-	private String freeArea;
+  @Lob
+  @Column(name = "free_area")
+  private String freeArea;
 
-	@Lob
-	@Column(name="name")
-    @NotBlank (message = "Name is required")
-	private String name;
+  @Lob
+  @Column(name = "name")
+  @NotBlank(message = "Name is required")
+  private String name;
 
-	@Lob
-	@Column(name="note")
-	private String note;
+  @Lob
+  @Column(name = "note")
+  private String note;
 
-	@Lob
-	@Column(name="search_word")
-	private String searchWord;
+  @Lob
+  @Column(name = "search_word")
+  private String searchWord;
 
-	@Column(name="status")
-	private short status;
+  @Column(name = "status")
+  private short status;
 
   public int getProductId() {
     return productId;
@@ -157,6 +153,5 @@ public class Product extends AbstractEntity implements Serializable {
   public static long getSerialversionuid() {
     return serialVersionUID;
   }
-	
-	
+
 }

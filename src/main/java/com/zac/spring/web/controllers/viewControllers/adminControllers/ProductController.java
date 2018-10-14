@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.zac.spring.entity.Product;
 import com.zac.spring.service.ProductService;
 import com.zac.spring.service.UploadForm;
+import com.zac.spring.web.controllers.viewControllers.ZacController;
 import com.zac.spring.web.dto.UserDto;
 
 /**
@@ -32,7 +35,10 @@ import com.zac.spring.web.dto.UserDto;
 @Controller
 @RequestMapping("/adminPage")
 public class ProductController {
-    private ProductService productService;
+    
+  final static Logger logger = LoggerFactory.getLogger(ProductController.class);
+
+  private ProductService productService;
 
     public ProductController(ProductService productService) {
         this.productService = productService;

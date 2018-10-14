@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.zac.spring.entity.Category;
 import com.zac.spring.repository.CategoryRepository;
 import com.zac.spring.repository.ImageModel;
-import com.zac.spring.repository.ImageRepository;
+import com.zac.spring.repository.ImageRepository2;
 
 /**
  * Created by Zac
@@ -56,7 +56,7 @@ public class CategoryService {
     }
 	
 	@Autowired
-	ImageRepository imageRepository;
+	ImageRepository2 imageRepository;
 	public void testRun() throws Exception {
 		// image 1
 		ClassPathResource backImgFile = new ClassPathResource("image/jsa_about_img_black_background.png");
